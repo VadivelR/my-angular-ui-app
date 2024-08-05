@@ -1,0 +1,2 @@
+1. styleUrl : './header.component.css' or styleUrls : ['./header.component.css'] or styles: ['h1'{}] (inline) by setting this we can apply style for specific component.
+

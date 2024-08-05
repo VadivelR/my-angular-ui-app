@@ -1,0 +1,131 @@
+install visual studio code and 
+
+angular language service, 
+angular snippets extenstion.
+
+
+https://github.com/mschwarzmueller/angular-complete-guide-course-resources
+
+Project structure, 	working with componentes,.	 typescript for declarative code,
+	 handing user events, rendering and updating dynamic contents.
+	 
+1. .gitignore -> for ignoring git addition
+2. package.json -> dependancy management
+3. angular.json -> project configuration and angular cli config
+4. tsconfig.json -> no need to worry.
+5. .editorconfig -> how the coding to be formatted. 
+6. src -> where the source code
+	a. index.html -> starting point -> main html page
+	b. main.ts -> starting point -> angular code executed and starts
+	c. assets -> logo and othr
+	d. app -> all components.
+	
+
+====================================================================================================================
+when we downlaod the project from git, 
+	npm install  -> download all dependancy and project will start work on it.
+	
+	npm start -> ng serve and spin dev server and localhost:4002 --< we can see the project.
+====================================================================================================================
+	index.html
+		-> loaded first.-> no imports. but main.ts does the injection,
+		if we see closely, 
+			  <app-root></app-root> tag is present. 
+			  
+	
+	main.ts	-> take the AppComponent and starts the application.
+			selector: 'app-root' -> is mentioned in the AppComponent hence the tag in index.html will work
+	
+				
+	
+			import { bootstrapApplication } from '@angular/platform-browser';
+			import { appConfig } from './app/app.config';
+			import { AppComponent } from './app/app.component';
+
+			bootstrapApplication(AppComponent, appConfig)
+			  .catch((err) => console.error(err));
+
+		  <app-root> -> will be replaced with AppComponent.ts and html file
+		  
+					@Component({
+					  selector: 'app-root',
+					  standalone: true,
+					  imports: [CommonModule, RouterOutlet],
+					  templateUrl: './app.component.html',
+					  styleUrls: ['./app.component.css']
+					})
+					export class AppComponent {
+					  title 
+					  
+		@Component -> is a decorator -> add extra meta data -> from @angular/core
+		
+		@Component with some configuration which helps to create a HTML page which is rendering to respective place.
+			
+		Decorator -> conversts standard class to angular component and treated as component.
+		
+		selector => which element to look in the html file.
+		templateUrl => where the html file is located.
+		styleUrls => styles will applied only to the current component.
+		
+		<app-root> -> will replace and show the html page.
+		
+====================================================================================================================
+DEMO Application:
+====================================================================================================================
+1. Header, side bar, dialog as seperate component build as building blocks
+
+1. header component.
+	create a new component
+		PS C:\projects\angular\my-angular-ui-app\src> ng g c header
+			CREATE src/header/header.component.html (22 bytes)
+			CREATE src/header/header.component.spec.ts (619 bytes)
+			CREATE src/header/header.component.ts (246 bytes)     
+			CREATE src/header/header.component.css (0 bytes)      
+			PS C:\projects\angular\my-angular-ui-app\src> 
+	
+	tempalte: '<h1> hello world </h1>' -> this also works.
+	
+	standalone = true -> module based component is also there. in past module base. now its easier to use with standalone.
+	
+	header.component.html
+		<header>
+			<h1> Header </h1>
+		</header>
+		
+2. how to use?
+		go to index.html and add <app-header>. 
+		NOthing works. 
+		because angular wont scan all.
+	explicitly have to tell.
+		
+			main.ts -> bootstrapApplication -> have to tell.
+	
+	
+	bootstrapApplication(HeaderComponent); --> this is not right way. 
+	
+			appComponent
+		header  user  tasks-> tasks
+		
+	bootstrapApplication -> called only one and other components will be in appComponent nested.
+	
+	We get below error if we just add app-header -> in the app.component.html because angular dnt scan
+	
+		X [ERROR] NG8001: 'app-header' is not a known element:
+		1. If 'app-header' is an Angular component, then verify that it is included in the '@Component.imports' of this component.
+		2. If 'app-header' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@Component.schemas' of this component to suppress this message. [plugin angular-compiler]
+
+			src/app/app.component.html:0:0:
+			  0 │ 
+	
+	in order to scan, in the app-component.ts -> import header component and inlcude the moduels. So that angular will work.
+			
+			import { HeaderComponent } from "./header/header.component";  
+			@Component({
+			  selector: 'app-root',
+			  standalone: true,
+			  imports: [CommonModule, RouterOutlet, HeaderComponent],
+								
+								
+								
+								
+			
