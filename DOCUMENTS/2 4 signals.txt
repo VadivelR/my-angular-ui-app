@@ -1,0 +1,20 @@
+Updating state:
+	Option 1
+		Relaying on Zone.js angulars change the detection mechanism
+	
+	works automatically no special instruction needed. supported since angular 2.
+	
+	Option 2:
+		Using Singals to notify anguar about values and changes and required UI updates.
+	
+	required usage of special signal instructions and code. supported since angular 16.
+	
+step1: 
+	import signal from component
+
+step2:
+	selectedUser = signal(DUMMY_USERS[random]) -> load with initial values
+	
+	we can also change the values using set(DUMMY_USERS[random])
+		
+		

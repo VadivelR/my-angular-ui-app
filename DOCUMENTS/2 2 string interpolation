@@ -1,0 +1,44 @@
+1. two ways to binding  (ctl k+ ctl f = format the code.)
+	
+		1. String interpolation - {{ }} -  Any public property of the component
+			
+			
+		
+			  <span>{{ selectedUser.name }}</span>
+			
+		2. property binding.
+		
+			<img src="{{ selectedUser.avatar }}" />
+			
+			name of the property in the squre bracket and inside the quotes we can define the property
+			
+			<img [src]="selectedUser.avatar" /> 
+		
+		
+					<div>
+					<button>
+						<!-- <img src="{{ selectedUser.avatar}}" />-- property binding-->
+
+						<img [src]="'assets/users/' + selectedUser.avatar" /> <!-- property binding with out curly braces -->
+						
+						<span>{{ selectedUser.name }}</span> <!-- string interpolation-->
+					</button>
+					</div>
+					
+Since angular is dynamic building. we need to know these two.
+
+1. the above method is string interpolation and property binding. but here we are computing.
+
+2. we can directly in template class using getter.
+
+			export class UserComponent {
+				selectedUser = DUMMY_USERS[random];
+
+				get imagePath() {
+				 return 'assets/users/' + this.selectedUser.avatar; 
+				}
+			}
+
+
+	when we call -> <img [src]="imagePath" />
+			
