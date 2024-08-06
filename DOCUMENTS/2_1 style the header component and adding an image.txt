@@ -1,2 +1,23 @@
-1. styleUrl : './header.component.css' or styleUrls : ['./header.component.css'] or styles: ['h1'{}] (inline) by setting this we can apply style for specific component.
+2.18. 
+
+
+Angular CLI to create components:
+
+	ng g c <componentName>
+	
+	ng g c header
+	
+	
+In order to import the component into another components, 
+if there is not values are being passed, we can simply use self close tags.
+
+<app-header />
+<app-user />
+   
+   
+   CSS makes more styles.
+   
+   
+ 
+   
 

@@ -125,7 +125,9 @@ DEMO Application:
 			  standalone: true,
 			  imports: [CommonModule, RouterOutlet, HeaderComponent],
 								
+Styles to the components:								
 								
-								
-								
+1. styleUrl : './header.component.css' or 
+   styleUrls : ['./header.component.css'] or 
+   styles: ['h1'{}] (inline) by setting this we can apply style for specific component.	
 			
